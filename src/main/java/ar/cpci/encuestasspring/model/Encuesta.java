@@ -10,6 +10,7 @@ public class Encuesta {
 
     @Id
     private String nombre;
+    private int dificultad;
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "encuesta_id")
     private List<Pregunta> preguntas;
@@ -32,5 +33,13 @@ public class Encuesta {
 
     public void setPreguntas(List<Pregunta> preguntas) {
         this.preguntas = preguntas;
+    }
+
+    public int getDificultad() {
+        return dificultad;
+    }
+
+    public void setDificultad(int dificultad) {
+        this.dificultad = dificultad;
     }
 }
