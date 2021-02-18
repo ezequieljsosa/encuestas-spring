@@ -1,6 +1,9 @@
 package ar.cpci.encuestasspring.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +12,9 @@ import java.util.List;
 public class Encuesta {
 
     @Id
+    @NotEmpty(message = "{encuesta_nombre.vacio}")
     private String nombre;
+    @Min(0)
     private int dificultad;
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "encuesta_id")
@@ -43,3 +48,4 @@ public class Encuesta {
         this.dificultad = dificultad;
     }
 }
+//nombre_encuesta.vacio="nombre esta vacio"

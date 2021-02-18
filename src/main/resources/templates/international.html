@@ -1,0 +1,15 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<h1 th:text="#{greeting}"></h1>
+
+<span th:text="#{lang.change}"></span>:
+<form>
+<select name="lang" id="locales">
+    <option value=""></option>
+    <option value="en" th:text="#{lang.eng}"></option>
+    <option value="es" th:text="#{lang.es}"></option>
+</select>
+    <input type="submit" />
+</form>
+</html>

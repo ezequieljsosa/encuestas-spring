@@ -4,8 +4,21 @@
 </head>
 <body>
 <form action="/encuesta/edit" method="POST">
-    Nombre: <input name="nombre" type="text" /><br />
-    Dificultad: <input name="dificultad" type="text" /><br />
+    Nombre: <input name="nombre" type="text"
+                   th:value="${encuesta.nombre}"   />
+    <p th:if="${#fields.hasErrors('encuesta.nombre')}"
+       th:errors="${encuesta.nombre}"> Error en campo nombre </p>
+    <br />
+
+    Dificultad: <input name="dificultad"
+                       th:value="${encuesta.dificultad}"
+                       type="number" />
+
+    <p th:if="${#fields.hasErrors('encuesta.dificultad')}"
+       th:errors="${encuesta.dificultad}"> Error en campo dificultad
+    </p>
+
+    <br />
     <input type="submit" />
 </form>
 </body>
