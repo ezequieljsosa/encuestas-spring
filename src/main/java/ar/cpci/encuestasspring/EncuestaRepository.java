@@ -3,12 +3,14 @@ package ar.cpci.encuestasspring;
 import ar.cpci.encuestasspring.model.Encuesta;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 
-@Repository
+//@Repository
+@RepositoryRestResource(path="encuesta",collectionResourceRel = "encuesta")
 public interface EncuestaRepository
         extends PagingAndSortingRepository<
         Encuesta,String> {

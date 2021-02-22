@@ -3,14 +3,12 @@ package ar.cpci.encuestasspring;
 import ar.cpci.encuestasspring.model.Encuesta;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
-@RestController()
+//@RestController()
 public class EncuestaRestController {
 
     private final EncuestaRepository repository;
@@ -20,10 +18,29 @@ public class EncuestaRestController {
     }
 
     @GetMapping("/encuesta")
-    Iterable<Encuesta> all() {
-        return repository.findAll();
+    Page<Encuesta> all(Pageable page) {
+        return repository.findAll(page);
     }
 
+    @GetMapping("/encuesta/{nombre}")
+    Encuesta one(@PathVariable String nombre) throws EncuestaNotFoundException {
+        Optional<Encuesta> optionalEncuesta = repository.findById(nombre);
+        if( optionalEncuesta.isPresent()){
+            return optionalEncuesta.get();
+        }
+        throw new EncuestaNotFoundException(nombre);
 
+    }
+
+    @PostMapping("/encuesta")
+    Encuesta crear(@RequestBody Encuesta encuesta){
+        return  this.repository.save(encuesta);
+    }
+
+    @PutMapping ("/encuesta/{nombre}")
+    Encuesta modificar(Encuesta encuesta){
+        //...
+        return null;
+    }
 
 }
