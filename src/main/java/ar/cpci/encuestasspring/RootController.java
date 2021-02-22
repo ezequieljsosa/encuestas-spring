@@ -14,6 +14,11 @@ public class RootController {
 
         return "international";
     }
+    @GetMapping("/error")
+    public String errorpage() {
+
+        return "error";
+    }
 
     @GetMapping("/current_locale")
     public @ResponseBody  String home(Locale locale) {
