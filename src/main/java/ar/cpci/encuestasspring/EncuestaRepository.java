@@ -4,6 +4,7 @@ import ar.cpci.encuestasspring.model.Encuesta;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+import org.springframework.data.rest.core.annotation.RestResource;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -14,5 +15,9 @@ import java.util.List;
 public interface EncuestaRepository
         extends PagingAndSortingRepository<
         Encuesta,String> {
+
+    //http://localhost:8080/api/encuesta/search
     Encuesta findByNombre(String nombre);
+
+
 }
