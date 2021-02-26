@@ -24,7 +24,7 @@ import java.util.Map;
 import java.util.Optional;
 
 
-//@Controller
+@Controller
 public class EncuestaController {
 
     @Autowired

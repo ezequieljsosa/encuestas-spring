@@ -11,7 +11,8 @@ import java.util.List;
 
 
 //@Repository
-@RepositoryRestResource(path="encuesta",collectionResourceRel = "encuesta")
+@RepositoryRestResource(path="encuesta",collectionResourceRel = "encuesta",
+    excerptProjection = EncuestaProj.class)
 public interface EncuestaRepository
         extends PagingAndSortingRepository<
         Encuesta,String> {
@@ -19,5 +20,8 @@ public interface EncuestaRepository
     //http://localhost:8080/api/encuesta/search
     Encuesta findByNombre(String nombre);
 
+    @Override
+    @RestResource(exported = false)
+    Encuesta save(Encuesta var1);
 
 }

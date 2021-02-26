@@ -2,17 +2,40 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
 <h1>Listado de encuestas:</h1>
 
 <table>
     <thead>    <tr>   </tr>   </thead>
     <tbody>
-    <tr th:each="encuesta: ${encuestas}">
+    <tr th:id="'fila_' +  ${encuesta.nombre}" th:each="encuesta: ${encuestas}">
         <td>
             <a  th:text="${encuesta.nombre}" th:href="'/encuesta/' + ${encuesta.nombre}" > una Encuesta </a>
+            <input class="botonBorrar" type="button" value="Borrar" th:id="'borrar_' + ${encuesta.nombre}" />
         </td>
+
     </tr>
     </tbody>
 </table>
+<script>
+function borrar(){
+    const idEncuesta = this.id.replace("borrar_","");
+    $.ajax({
+        method:"DELETE",
+        url:"/api/encuesta/" + idEncuesta,
+        success: function(){
+           $("#fila_" + idEncuesta).remove();
+           alert(idEncuesta + " quitado con exito");
+        },
+        error: function( response ) {
+            alert("nombre disponible")
+        },
 
+    });
+
+}
+$(".botonBorrar").click(borrar);
+
+</script>
 </html>

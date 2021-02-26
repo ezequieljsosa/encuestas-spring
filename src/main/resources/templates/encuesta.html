@@ -11,7 +11,7 @@
 </head>
 <body>
 
-<div class="container">
+<div th:id="${encuesta.nombre}" class="container">
 
 
     <h1>Encuesta: <span th:text="${encuesta.nombre}"></span></h1>
@@ -23,7 +23,7 @@
 
             </tr>
             </thead>
-            <tbody>
+            <tbody id="tablaPreguntas">
             <tr th:each="preg: ${encuesta.preguntas}">
                 <td>
                     <span  th:text="${preg.texto}"> una pregunta </span>
@@ -39,8 +39,32 @@
 
     </div>
 
+    <form>
+        <input id="pregunta" value="" />
+        <input type="button" onclick="agregarPregunta()" value="agregar pregunta" />
+
+    </form>
+
 
 </div>
+
+<script>
+    function agregarPregunta(){
+        $.ajax({
+            url: "/api/encuesta/" + $(".container")[0].id,
+            method:"PUT",
+            data: {} ,
+            success: function( response ) {
+                const tr = $("<tr/>");
+                tr.html("<td>" + $("#pregunta").val() + "</td>");
+                $("#tablaPreguntas").append(tr);
+            },
+            error: function( response ) {
+                alert("hubo un error")
+            },
+        });
+    }
+</script>
 
 </body>
 </html>

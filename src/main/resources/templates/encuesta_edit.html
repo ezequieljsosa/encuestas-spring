@@ -1,25 +1,54 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+
 </head>
 <body>
 <form action="/encuesta/edit" method="POST">
-    Nombre: <input name="nombre" type="text"
-                   th:value="${encuesta.nombre}"   />
+    Nombre: <input name="nombre" type="text" id="nombreEncuesta"
+                   th:value="${encuesta.nombre}"/>
+    <span id="status">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+    <input onclick="validarDisponible()" type="button" value="Esta Disponible">
+
+
     <p th:if="${#fields.hasErrors('encuesta.nombre')}"
        th:errors="${encuesta.nombre}"> Error en campo nombre </p>
-    <br />
+    <br/>
 
     Dificultad: <input name="dificultad"
                        th:value="${encuesta.dificultad}"
-                       type="number" />
+                       type="number"/>
 
     <p th:if="${#fields.hasErrors('encuesta.dificultad')}"
        th:errors="${encuesta.dificultad}"> Error en campo dificultad
     </p>
 
-    <br />
-    <input type="submit" />
+    <br/>
+    <input type="submit"/>
 </form>
+
+<script>
+    function validarDisponible(){
+        const nombreEncuesta = $("#nombreEncuesta").val();
+
+        $.ajax({
+            url: "/api/encuesta/" + nombreEncuesta,
+            success: function (response){
+                alert(response.nombre + " ya existe");
+                $("#status").css("background-color","red");
+            },
+            error: function( response ) {
+                alert("nombre disponible");
+                $("#status").css("background-color","green");
+            },
+        });
+
+    }
+</script>
+
+
 </body>
 </html>
