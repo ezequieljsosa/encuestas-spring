@@ -20,8 +20,8 @@ public interface EncuestaRepository
     //http://localhost:8080/api/encuesta/search
     Encuesta findByNombre(String nombre);
 
-    @Override
-    @RestResource(exported = false)
-    Encuesta save(Encuesta var1);
+//    @Override
+//    @RestResource(exported = false)
+//    Encuesta save(Encuesta var1);
 
 }
