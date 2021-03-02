@@ -49,11 +49,26 @@
 </div>
 
 <script>
-    function agregarPregunta(){
-        $.ajax({
+    let encuesta = null;
+    $.ajax({
             url: "/api/encuesta/" + $(".container")[0].id,
+            success:function (response){
+                encuesta = response;
+            }
+    });
+
+
+    function agregarPregunta(){
+        encuesta.preguntas.push(
+            {
+                "texto": $("#pregunta").val()
+            }
+        );
+        $.ajax({
+            url: "/api/encuesta/" + $(".container")[0].id ,
             method:"PUT",
-            data: {} ,
+            contentType:'application/json',
+            data: JSON.stringify( encuesta ) ,
             success: function( response ) {
                 const tr = $("<tr/>");
                 tr.html("<td>" + $("#pregunta").val() + "</td>");

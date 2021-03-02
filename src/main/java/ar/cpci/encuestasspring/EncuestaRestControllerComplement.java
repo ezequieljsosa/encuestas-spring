@@ -1,8 +1,10 @@
 package ar.cpci.encuestasspring;
 
 import ar.cpci.encuestasspring.model.Encuesta;
+import ar.cpci.encuestasspring.model.Pregunta;
 import org.springframework.data.rest.webmvc.RepositoryRestController;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -29,5 +31,14 @@ public class EncuestaRestControllerComplement {
     public ResponseEntity<Encuesta> crear(@RequestBody Encuesta e){
         return  ResponseEntity.ok( this.repo.save(e)  );
     }
+
+//    @RequestMapping(method = RequestMethod.POST,value = "/encuesta/{nombreEncuesta}/pregunta")
+//    public ResponseEntity<Encuesta> crearPregunta(@PathVariable String nombreEncuesta,
+//                                                  @RequestBody Pregunta pregunta){
+//        Encuesta encuesta = this.repo.findById(nombreEncuesta).get();
+//        encuesta.getPreguntas().add(pregunta);
+//
+//        return  ResponseEntity.ok(   this.repo.save(encuesta) );
+//    }
 
 }

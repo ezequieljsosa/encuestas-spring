@@ -8,6 +8,14 @@
 </head>
 <body>
 <form action="/encuesta/edit" method="POST">
+
+    <input
+            type="hidden"
+            th:name="${_csrf.parameterName}"
+            th:value="${_csrf.token}" />
+
+
+
     Nombre: <input name="nombre" type="text" id="nombreEncuesta"
                    th:value="${encuesta.nombre}"/>
     <span id="status">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
