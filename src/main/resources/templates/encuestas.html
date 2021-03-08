@@ -23,13 +23,13 @@ function borrar(){
     const idEncuesta = this.id.replace("borrar_","");
     $.ajax({
         method:"DELETE",
-        url:"/api/encuesta/" + idEncuesta,
+        url:"http://localhost:8081/api/encuesta/" + idEncuesta,
         success: function(){
            $("#fila_" + idEncuesta).remove();
            alert(idEncuesta + " quitado con exito");
         },
         error: function( response ) {
-            alert("nombre disponible")
+            alert("error")
         },
 
     });
