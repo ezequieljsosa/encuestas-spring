@@ -1,10 +1,9 @@
-package ar.cpci.encuestasspring;
+package ar.cpci.encuestasspring.controller.rest;
 
 import ar.cpci.encuestasspring.model.Encuesta;
-import ar.cpci.encuestasspring.model.Pregunta;
+import ar.cpci.encuestasspring.repo.EncuestaRepository;
 import org.springframework.data.rest.webmvc.RepositoryRestController;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.util.Optional;
 import java.util.Random;
 
+// Extiende las funcionalidades de repo.EncuestaRepository que es un RepositoryRestResource
 @RepositoryRestController
 public class EncuestaRestControllerComplement {
 

@@ -1,4 +1,4 @@
-package ar.cpci.encuestasspring;
+package ar.cpci.encuestasspring.controller;
 
 
 import org.springframework.stereotype.Controller;
@@ -12,17 +12,22 @@ public class RootController {
     @GetMapping("/international")
     public String getInternationalPage() {
 
-        return "international";
+        return "system/international";
     }
+
     @GetMapping("/error")
     public String errorpage() {
-
-        return "error";
+        return "system/error";
     }
 
     @GetMapping("/current_locale")
-    public @ResponseBody  String home(Locale locale) {
+    public @ResponseBody  String locale(Locale locale) {
 
         return locale.toString();
+    }
+    @GetMapping("/")
+    public   String home() {
+
+        return "home";
     }
 }

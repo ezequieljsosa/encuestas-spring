@@ -1,6 +1,14 @@
-usted contesto:
-<ul>
-    <li th:each="rta: ${respuestas}">
-        <span th:text="${rta}"></span>
-    </li>
-</ul>
+<html>
+<body>
+<div class="container">
+    <div th:insert="fragments/header :: header"></div>
+    usted contesto:
+    <ul>
+        <li th:each="rta: ${respuestas}">
+            <span th:text="${rta}"></span>
+        </li>
+    </ul>
+    <div th:insert="fragments/footer :: footer"></div>
+</div>
+</body>
+</html>

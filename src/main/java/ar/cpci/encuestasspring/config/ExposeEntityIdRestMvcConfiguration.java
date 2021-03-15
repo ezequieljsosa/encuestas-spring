@@ -1,4 +1,4 @@
-package ar.cpci.encuestasspring;
+package ar.cpci.encuestasspring.config;
 
 
 import ar.cpci.encuestasspring.model.Encuesta;

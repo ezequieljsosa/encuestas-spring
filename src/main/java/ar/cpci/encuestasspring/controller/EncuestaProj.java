@@ -1,4 +1,4 @@
-package ar.cpci.encuestasspring;
+package ar.cpci.encuestasspring.controller;
 
 import ar.cpci.encuestasspring.model.Encuesta;
 import org.springframework.beans.factory.annotation.Value;

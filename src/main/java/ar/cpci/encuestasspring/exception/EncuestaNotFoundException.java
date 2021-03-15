@@ -1,4 +1,4 @@
-package ar.cpci.encuestasspring;
+package ar.cpci.encuestasspring.exception;
 
 public class EncuestaNotFoundException extends Throwable {
 

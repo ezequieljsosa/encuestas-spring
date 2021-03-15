@@ -13,7 +13,7 @@
 <body>
 
 <div class="container">
-
+    <div th:insert="fragments/header :: header"></div>
 
     <h1>Encuesta: <span th:text="${encuesta.nombre}"></span></h1>
 
@@ -47,6 +47,6 @@
 
 
 </div>
-
+<div th:insert="fragments/footer :: footer"></div>
 </body>
 </html>

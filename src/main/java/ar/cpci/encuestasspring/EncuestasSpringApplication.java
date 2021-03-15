@@ -1,6 +1,10 @@
 package ar.cpci.encuestasspring;
 
 import ar.cpci.encuestasspring.model.Encuesta;
+import ar.cpci.encuestasspring.model.Usuario;
+import ar.cpci.encuestasspring.repo.EncuestaRepository;
+import ar.cpci.encuestasspring.repo.UsuarioRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,6 +14,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.*;
@@ -19,73 +28,37 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import java.util.Locale;
 
 @EnableWebMvc
-@Configuration
 @SpringBootApplication
-public class EncuestasSpringApplication implements WebMvcConfigurer {
+@EnableGlobalMethodSecurity(securedEnabled = true)
+public class EncuestasSpringApplication  {
 
     public static void main(String[] args) {
 
         SpringApplication.run(EncuestasSpringApplication.class, args);
     }
 
+
+    //Recordar que con la configuracion actual esta linea solo funciona cuando
+    // EnableGlobalMethodSecurity esta comentado
     @Bean
-    public CommandLineRunner demo(EncuestaRepository repository) {
+    public CommandLineRunner demo(UsuarioRepository repository, PasswordEncoder passwordEncoder) {
+
         return (args) -> {
-            for (Integer i = 0; i < 10; ++i) {
-
-                Encuesta s = new Encuesta();
-                s.setNombre("encuesta" + i.toString());
-                repository.save(s);
-
-            }
+//            for (Integer i = 0; i < 10; ++i) {
+//
+//                Encuesta s = new Encuesta();
+//                s.setNombre("encuesta" + i.toString());
+//                repository.save(s);
+//
+//            }
+//              Crear usuaro de prueba
+//            Usuario usuario = new Usuario();
+//            usuario.setUsername("admin");
+//            usuario.setPassword(passwordEncoder.encode("123"));
+//            repository.save(usuario);
         };
     }
 
-    @Bean
-    public LocaleResolver localeResolver() {
-        SessionLocaleResolver slr = new SessionLocaleResolver();
-        slr.setDefaultLocale(Locale.forLanguageTag("es_AR"));
-        return slr;
-    }
 
-    @Bean
-    public LocaleChangeInterceptor localeChangeInterceptor() {
-        LocaleChangeInterceptor lci = new LocaleChangeInterceptor();
-        lci.setParamName("lang");
-        return lci;
-    }
-
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(localeChangeInterceptor());
-    }
-
-    @Bean
-    public MessageSource messageSource() {
-        ReloadableResourceBundleMessageSource messageSource
-                = new ReloadableResourceBundleMessageSource();
-
-        messageSource.setBasename("classpath:messages");
-        messageSource.setDefaultEncoding("UTF-8");
-        return messageSource;
-    }
-
-    @Bean
-    public LocalValidatorFactoryBean getValidator() {
-        LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();
-        bean.setValidationMessageSource(messageSource());
-        return bean;
-    }
-
-
-    public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/logout").setViewName("logout");
-        registry.addViewController("/login").setViewName("login");
-    }
-
-    @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/api/**").allowedOrigins("http://localhost:8080");
-    }
 
 }

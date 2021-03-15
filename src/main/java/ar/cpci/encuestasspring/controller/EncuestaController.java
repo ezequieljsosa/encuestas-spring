@@ -1,4 +1,4 @@
-package ar.cpci.encuestasspring;
+package ar.cpci.encuestasspring.controller;
 
 //get("/encuesta", (request, response) -> {
 //        Map<String, Object> map = new HashMap<>();
@@ -9,18 +9,16 @@ package ar.cpci.encuestasspring;
 //        });
 
 import ar.cpci.encuestasspring.model.Encuesta;
+import ar.cpci.encuestasspring.repo.EncuestaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.Map;
 import java.util.Optional;
 
 
@@ -50,6 +48,7 @@ public class EncuestaController {
         }
         return "encuesta";
     }
+
 
     @GetMapping("/encuesta/edit")
     //@RequestParam Map<String,String> allRequestParams

@@ -1,11 +1,12 @@
-package ar.cpci.encuestasspring;
+package ar.cpci.encuestasspring.controller.rest;
 
+import ar.cpci.encuestasspring.exception.EncuestaNotFoundException;
 import ar.cpci.encuestasspring.model.Encuesta;
+import ar.cpci.encuestasspring.repo.EncuestaRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Optional;
 
 //@RestController()

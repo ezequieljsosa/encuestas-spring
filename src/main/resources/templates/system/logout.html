@@ -6,7 +6,7 @@
     <title>Logout</title>
 </head>
 <body>
-<h1 th:inline="text"> [[${#httpServletRequest.remoteUser}]]!</h1>
+<h1 th:inline="text">¿ Esta seguro que desea cerrar la sesión de:  "[[${#httpServletRequest.remoteUser}]]"?</h1>
 <form th:action="@{/logout}" method="post">
     <input type="submit" value="Salir"/>
 </form>

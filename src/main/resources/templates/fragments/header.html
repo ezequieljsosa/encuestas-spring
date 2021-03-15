@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<body>
+<header th:fragment="header">
+
+    <nav>
+        <a th:href="@{/}">Home</a>
+        <a th:href="@{/encuesta}">Encuestas</a>
+        <a th:href="@{/encuesta/edit}">Crear encuesta</a>
+
+        <a sec:authorize="isAuthenticated()" sec:authentication="principal.username">Username</a>
+        <a sec:authorize="isAuthenticated()" th:href="@{/logout}" >Logout</a>
+
+    </nav>
+
+</header>
+</body>
+</html>

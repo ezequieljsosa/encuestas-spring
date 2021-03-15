@@ -1,9 +1,11 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 
-
+<head>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-
+</head>
+<body>
+<div th:insert="fragments/header :: header"></div>
 <h1>Listado de encuestas:</h1>
 
 <table>
@@ -38,4 +40,8 @@ function borrar(){
 $(".botonBorrar").click(borrar);
 
 </script>
+
+<div th:insert="fragments/footer :: footer"></div>
+</body>
+
 </html>
