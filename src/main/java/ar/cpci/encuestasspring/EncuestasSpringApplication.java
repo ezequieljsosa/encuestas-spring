@@ -29,7 +29,7 @@ import java.util.Locale;
 
 @EnableWebMvc
 @SpringBootApplication
-@EnableGlobalMethodSecurity(securedEnabled = true)
+//@EnableGlobalMethodSecurity(securedEnabled = true)
 public class EncuestasSpringApplication  {
 
     public static void main(String[] args) {
@@ -52,10 +52,15 @@ public class EncuestasSpringApplication  {
 //
 //            }
 //              Crear usuaro de prueba
-//            Usuario usuario = new Usuario();
-//            usuario.setUsername("admin");
-//            usuario.setPassword(passwordEncoder.encode("123"));
-//            repository.save(usuario);
+            Usuario admin = repository.findByUsername("admin");
+            if (admin == null){
+
+                Usuario usuario = new Usuario();
+                usuario.setUsername("admin");
+                usuario.setPassword(passwordEncoder.encode("123"));
+                repository.save(usuario);
+
+            }
         };
     }
 
