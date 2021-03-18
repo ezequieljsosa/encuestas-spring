@@ -2,8 +2,10 @@ package ar.cpci.encuestasspring.security;
 
 import ar.cpci.encuestasspring.model.Usuario;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 /***
@@ -20,7 +22,12 @@ public class MyModelUserDetails implements UserDetails {
     // Para mapear los roles hay que mapearlos en el Usuario y convertirlos en esta coleccion
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        // Esto no esta bien, es solo por motivos de prueba
+        Collection<GrantedAuthority> roles = new ArrayList<>();
+        if (this.user.getUsername().equals("admin")){
+            roles.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+        }
+        return roles;
     }
 
     @Override
